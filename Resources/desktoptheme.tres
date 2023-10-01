@@ -1,0 +1,30 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dufae2rxs8r7f"]
+
+[ext_resource type="FontFile" uid="uid://v2r8ssqulmic" path="res://Minecraft.ttf" id="1_k0nmt"]
+[ext_resource type="Texture2D" uid="uid://dqsgcls37arc8" path="res://Resources/basicwindow.png" id="1_wyr16"]
+[ext_resource type="Texture2D" uid="uid://cafv6t26mpqxv" path="res://Resources/desktopbar.png" id="2_6xvg2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_agjxv"]
+content_margin_left = 12.0
+content_margin_top = 2.0
+content_margin_right = 12.0
+content_margin_bottom = 4.0
+texture = ExtResource("1_wyr16")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m4yvc"]
+texture = ExtResource("2_6xvg2")
+
+[resource]
+default_font = ExtResource("1_k0nmt")
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("1_k0nmt")
+Button/styles/focus = SubResource("StyleBoxTexture_agjxv")
+Button/styles/hover = SubResource("StyleBoxTexture_agjxv")
+Button/styles/normal = SubResource("StyleBoxTexture_agjxv")
+Button/styles/pressed = SubResource("StyleBoxTexture_agjxv")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/fonts/font = ExtResource("1_k0nmt")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_m4yvc")
+RichTextLabel/colors/default_color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+RichTextLabel/fonts/bold_font = ExtResource("1_k0nmt")
+RichTextLabel/fonts/normal_font = ExtResource("1_k0nmt")

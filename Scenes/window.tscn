@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://dkgryufx8iim6"]
+
+[ext_resource type="Texture2D" uid="uid://dqsgcls37arc8" path="res://Resources/basicwindow.png" id="1_7t2bg"]
+[ext_resource type="Script" path="res://Scenes/window.gd" id="1_f5ydk"]
+[ext_resource type="Texture2D" uid="uid://dbgjvkmmqkd1c" path="res://Resources/bluegradient.png" id="2_1t884"]
+[ext_resource type="Theme" uid="uid://dufae2rxs8r7f" path="res://Resources/desktoptheme.tres" id="3_65qve"]
+[ext_resource type="Texture2D" uid="uid://cm1wpbhdf1gwm" path="res://Resources/xbutton.png" id="4_q6abn"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l3ps4"]
+texture = ExtResource("4_q6abn")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xud0n"]
+size = Vector2(16, 4.6)
+
+[node name="Window" type="Node2D"]
+scale = Vector2(10, 10)
+script = ExtResource("1_f5ydk")
+
+[node name="WindowBackground" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="WindowBackground"]
+position = Vector2(8, 11.44)
+texture = ExtResource("1_7t2bg")
+
+[node name="WindowBodyContainer" type="Control" parent="WindowBackground/Body"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Header" type="Node2D" parent="WindowBackground"]
+
+[node name="HeaderSprite" type="Sprite2D" parent="WindowBackground/Header"]
+position = Vector2(8, 2.24)
+scale = Vector2(1, 0.28)
+texture = ExtResource("2_1t884")
+
+[node name="Label" type="Label" parent="WindowBackground/Header"]
+offset_left = 2.0
+offset_top = 1.5
+offset_right = 56.0
+offset_bottom = 24.5
+scale = Vector2(0.1, 0.1)
+theme = ExtResource("3_65qve")
+text = "Window"
+metadata/_edit_use_anchors_ = true
+
+[node name="Buttons" type="Node2D" parent="WindowBackground/Header"]
+visible = false
+scale = Vector2(0.04, 0.1)
+
+[node name="Button" type="Button" parent="WindowBackground/Header/Buttons"]
+offset_left = 300.0
+offset_top = 15.0
+offset_right = 350.0
+offset_bottom = 35.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_l3ps4")
+metadata/_edit_use_anchors_ = true
+
+[node name="HeaderArea" type="Area2D" parent="WindowBackground/Header"]
+
+[node name="HeaderCollision" type="CollisionShape2D" parent="WindowBackground/Header/HeaderArea"]
+position = Vector2(8, 2.3)
+shape = SubResource("RectangleShape2D_xud0n")
+
+[connection signal="mouse_entered" from="WindowBackground/Header/HeaderArea" to="." method="_on_header_area_mouse_entered"]
+[connection signal="mouse_exited" from="WindowBackground/Header/HeaderArea" to="." method="_on_header_area_mouse_exited"]

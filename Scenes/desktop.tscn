@@ -1,0 +1,126 @@
+[gd_scene load_steps=9 format=3 uid="uid://i28urudh8vtn"]
+
+[ext_resource type="Theme" uid="uid://dufae2rxs8r7f" path="res://Resources/desktoptheme.tres" id="1_aq58p"]
+[ext_resource type="PackedScene" uid="uid://pbt04q8nj6pt" path="res://Scenes/defrag_bar.tscn" id="2_to8sh"]
+[ext_resource type="Script" path="res://Scenes/Mouse.gd" id="3_cku7j"]
+[ext_resource type="Texture2D" uid="uid://cm1wpbhdf1gwm" path="res://Resources/xbutton.png" id="3_ewbst"]
+[ext_resource type="Script" path="res://Scenes/GameTracker.gd" id="5_oms3f"]
+[ext_resource type="PackedScene" uid="uid://tfxm0hi0ld8p" path="res://Scenes/shop.tscn" id="6_5yyge"]
+[ext_resource type="PackedScene" uid="uid://bw2yr1w7w73bi" path="res://Scenes/path.tscn" id="7_ik5df"]
+[ext_resource type="PackedScene" uid="uid://c28kvkn8i1t5k" path="res://Scenes/welcome_window.tscn" id="8_dihvv"]
+
+[node name="Desktop" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+theme = ExtResource("1_aq58p")
+
+[node name="DesktopPanel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_top = 600.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DesktopPanel"]
+layout_mode = 2
+theme_override_constants/separation = 56
+
+[node name="Mouse" type="Node2D" parent="."]
+script = ExtResource("3_cku7j")
+
+[node name="Sprite2D" type="Sprite2D" parent="Mouse"]
+visible = false
+texture = ExtResource("3_ewbst")
+
+[node name="DefragBar" parent="." instance=ExtResource("2_to8sh")]
+position = Vector2(43, 36)
+
+[node name="GameTracker" type="Node" parent="." node_paths=PackedStringArray("spawn")]
+script = ExtResource("5_oms3f")
+spawn = NodePath("Spawn")
+waves = Array[String](["1,1", "1,1,2", "1,2,1,1,1,2", "3,1,1,2", "2,3,1,3,2,2,4,3", "4,4,3,2,3,3,4,3,2,1,1,1,1,1,1,3,4", "5,1,1,2,2", "5,4,3,3,2,1,1,1,1,3,4,5,2,3,2,2", "6,5,5,1,1,1", "6,5,5,4,4,3,2,1,1,1,1,1,2,2,2,2", "6,6,6,6,6,5,5,5,5,4,4,3,4,2,2", "6,6,6,6,6,5,5,5,5,4,4,3,4,2,2,1,1,6,4,3,2,1,2,3,4,5,6"])
+
+[node name="Spawn" type="Node2D" parent="GameTracker"]
+position = Vector2(1160, 493)
+
+[node name="Bus" type="Node2D" parent="."]
+z_index = -1
+scale = Vector2(2, 2)
+
+[node name="Path0" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(571, 262)
+rotation = 3.14109
+
+[node name="Path1" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(515, 262)
+rotation = 3.14159
+
+[node name="Path2" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(459.5, 262)
+rotation = 3.14109
+
+[node name="Path3" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(380, 241.5)
+rotation = -1.5708
+
+[node name="Path4" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(380, 185.5)
+rotation = -1.5708
+
+[node name="Path5" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(380, 129.5)
+rotation = -1.5708
+
+[node name="Path6" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(380, 73.5)
+rotation = -3.14159
+
+[node name="Path7" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(324, 73.5)
+rotation = 1.5708
+
+[node name="Path8" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(324, 129.5)
+rotation = 1.5708
+
+[node name="Path9" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(324, 185.5)
+rotation = 1.5708
+
+[node name="Path10" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(303.5, 265)
+rotation = -3.14159
+
+[node name="Path11" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(247.5, 265)
+rotation = -3.14159
+
+[node name="Path12" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(191.5, 265)
+rotation = -3.14159
+
+[node name="Path13" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(135.5, 265)
+rotation = -3.14159
+
+[node name="Path14" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(56, 241.5)
+rotation = -1.5708
+
+[node name="Path15" parent="Bus" instance=ExtResource("7_ik5df")]
+position = Vector2(56, 185.5)
+rotation = -1.5708
+
+[node name="Shop" parent="." instance=ExtResource("6_5yyge")]
+position = Vector2(870, 57)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 987.0
+offset_top = 421.0
+offset_right = 1103.0
+offset_bottom = 443.0
+text = "DEFRAGMENT"
+
+[node name="WelcomeWindow" parent="." instance=ExtResource("8_dihvv")]
+
+[connection signal="pressed" from="Button" to="GameTracker" method="_on_button_pressed"]

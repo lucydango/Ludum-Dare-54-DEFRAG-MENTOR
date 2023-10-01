@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://tfxm0hi0ld8p"]
+
+[ext_resource type="PackedScene" uid="uid://dkgryufx8iim6" path="res://Scenes/window.tscn" id="1_8xl8i"]
+[ext_resource type="Texture2D" uid="uid://7suclmcmyws" path="res://Resources/syringe.png" id="2_4ark8"]
+[ext_resource type="Theme" uid="uid://dufae2rxs8r7f" path="res://Resources/desktoptheme.tres" id="3_fwm28"]
+[ext_resource type="Script" path="res://Scenes/ShopWindow.gd" id="4_51gor"]
+[ext_resource type="PackedScene" uid="uid://q7s5nll0ldss" path="res://Scenes/tower.tscn" id="5_7lxod"]
+[ext_resource type="PackedScene" uid="uid://l8vd5omry4gn" path="res://Scenes/shop_button.tscn" id="5_nvhnt"]
+[ext_resource type="PackedScene" uid="uid://x27ps6vbflxa" path="res://Scenes/mine_tower.tscn" id="6_a157l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dshnh"]
+size = Vector2(254, 304)
+
+[node name="Shop" type="Node2D"]
+
+[node name="Window" parent="." instance=ExtResource("1_8xl8i")]
+scale = Vector2(15, 15)
+icon = ExtResource("2_4ark8")
+
+[node name="ShopWindow" type="Control" parent="Window/WindowBackground/Body" index="1"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -7.0
+offset_top = -7.44
+offset_right = 200.0
+offset_bottom = 198.56
+scale = Vector2(0.067, 0.067)
+theme = ExtResource("3_fwm28")
+script = ExtResource("4_51gor")
+shop_items = Array[PackedScene]([ExtResource("5_7lxod"), ExtResource("5_7lxod"), ExtResource("6_a157l")])
+item_names = Array[String](["Antivirus", "PRO Antivirus", "Minesweeper"])
+shop_prices = Array[int]([10, 25, 10])
+button_prefab = ExtResource("5_nvhnt")
+
+[node name="Label" type="Label" parent="Window/WindowBackground/Body/ShopWindow"]
+layout_mode = 0
+offset_left = 0.995025
+offset_top = 193.035
+offset_right = 104.995
+offset_bottom = 212.035
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "SPACE: 50KB"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/WindowBackground/Body/ShopWindow"]
+layout_mode = 0
+offset_right = 208.0
+offset_bottom = 194.0
+
+[node name="Label" parent="Window/WindowBackground/Header" index="1"]
+offset_right = 84.0
+text = "Defragger"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(117, 142)
+shape = SubResource("RectangleShape2D_dshnh")
+
+[editable path="Window"]

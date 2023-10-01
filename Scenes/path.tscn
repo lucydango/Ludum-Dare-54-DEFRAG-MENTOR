@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw2yr1w7w73bi"]
+
+[ext_resource type="Texture2D" uid="uid://da2qtvqsyyh5r" path="res://Resources/bus.png" id="1_ukfjn"]
+
+[node name="Path" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(28, 11.75)
+scale = Vector2(3.5, 2.9375)
+texture = ExtResource("1_ukfjn")
+
+[node name="Node0" type="Node2D" parent="."]
+position = Vector2(0, 12)
+
+[node name="Node1" type="Node2D" parent="."]
+position = Vector2(56, 12)
+scale = Vector2(10, 10)

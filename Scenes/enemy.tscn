@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dr3nl4utd5o00"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_fx5u1"]
+[ext_resource type="Texture2D" uid="uid://cohthnbn2hqwk" path="res://Resources/enemy.png" id="2_y431e"]
+[ext_resource type="AudioStream" uid="uid://cm1s6enchn80p" path="res://Sounds/Kill.wav" id="3_55dda"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkg47"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2vd3"]
+size = Vector2(24, 22)
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_fx5u1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_y431e")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_kkg47")
+
+[node name="Collider" type="Area2D" parent="."]
+collision_layer = 20
+collision_mask = 20
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
+shape = SubResource("RectangleShape2D_h2vd3")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_55dda")
+volume_db = 1.333
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Collider" to="." method="_on_collider_area_entered"]

@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://q7s5nll0ldss"]
+
+[ext_resource type="Script" path="res://Tower.gd" id="1_jwygd"]
+[ext_resource type="PackedScene" uid="uid://c3vmv5j4p8jhr" path="res://Scenes/bullet.tscn" id="2_bpyvy"]
+[ext_resource type="PackedScene" uid="uid://dkgryufx8iim6" path="res://Scenes/window.tscn" id="2_jvtp5"]
+[ext_resource type="Texture2D" uid="uid://dgxqtgq6lsgm2" path="res://Resources/antivirus.png" id="3_mceom"]
+[ext_resource type="Texture2D" uid="uid://c25apo0xney4" path="res://Resources/antiviruspro.png" id="5_qybo6"]
+[ext_resource type="AudioStream" uid="uid://hkh4aperr1ef" path="res://Sounds/Shoot.wav" id="5_w6ul0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kghbo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_mceom")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qybo6")
+}],
+"loop": true,
+"name": &"pro",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xbngh"]
+radius = 457.762
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_jwygd")
+bullet_prefab = ExtResource("2_bpyvy")
+
+[node name="Window" parent="." instance=ExtResource("2_jvtp5")]
+scale = Vector2(6, 6)
+icon = ExtResource("3_mceom")
+
+[node name="Label" parent="Window/WindowBackground/Header" index="1"]
+text = "Antivirus"
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Window"]
+position = Vector2(8, 11.6)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_kghbo")
+
+[node name="Vision" type="Area2D" parent="Window"]
+scale = Vector2(0.1, 0.1)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Window/Vision"]
+position = Vector2(80, 117)
+shape = SubResource("CircleShape2D_xbngh")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Window"]
+stream = ExtResource("5_w6ul0")
+volume_db = 2.667
+
+[connection signal="area_entered" from="Window/Vision" to="." method="_on_vision_area_entered"]
+[connection signal="area_exited" from="Window/Vision" to="." method="_on_vision_area_exited"]
+
+[editable path="Window"]

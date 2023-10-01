@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://pbt04q8nj6pt"]
+
+[ext_resource type="PackedScene" uid="uid://dkgryufx8iim6" path="res://Scenes/window.tscn" id="1_d5yj1"]
+[ext_resource type="Script" path="res://Scenes/defrag_bar.gd" id="1_t6uci"]
+[ext_resource type="Theme" uid="uid://dufae2rxs8r7f" path="res://Resources/desktoptheme.tres" id="2_xqd4l"]
+[ext_resource type="Texture2D" uid="uid://bwqd6u0qbp66q" path="res://Resources/defragbarred.png" id="3_5wqr2"]
+[ext_resource type="Texture2D" uid="uid://cw2b4mv557pxl" path="res://Resources/defragbargreen.png" id="4_k15sw"]
+[ext_resource type="Texture2D" uid="uid://5dr4hxeel606" path="res://Resources/defragbarover.png" id="4_oqbo4"]
+[ext_resource type="Texture2D" uid="uid://bc7q6s7t3k8w3" path="res://Resources/warning.png" id="5_j8rqd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyjnd"]
+size = Vector2(271, 284)
+
+[node name="DefragBar" type="Node2D"]
+script = ExtResource("1_t6uci")
+
+[node name="Window" parent="." instance=ExtResource("1_d5yj1")]
+scale = Vector2(16, 14)
+icon = ExtResource("5_j8rqd")
+movable = false
+
+[node name="Label" parent="Window/WindowBackground/Header" index="1"]
+text = "WARNING!"
+
+[node name="Button" parent="Window/WindowBackground/Header/Buttons" index="0"]
+visible = false
+
+[node name="Control" type="Control" parent="Window"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -6.0
+offset_top = 7.0
+offset_right = 237.0
+offset_bottom = 86.0
+scale = Vector2(0.1, 0.1)
+theme = ExtResource("2_xqd4l")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Window/Control"]
+layout_mode = 2
+offset_left = 78.125
+offset_top = 68.5715
+offset_right = 202.125
+offset_bottom = 106.571
+rounded = true
+fill_mode = 1
+nine_patch_stretch = true
+texture_under = ExtResource("3_5wqr2")
+texture_over = ExtResource("4_oqbo4")
+texture_progress = ExtResource("4_k15sw")
+
+[node name="Label" type="Label" parent="Window/Control"]
+layout_mode = 2
+offset_left = 72.5
+offset_top = 31.4286
+offset_right = 210.5
+offset_bottom = 69.4286
+text = "DRIVE 100% 
+FRAGMENTED"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Window/Control"]
+layout_mode = 0
+offset_left = 121.25
+offset_top = -19.2857
+offset_right = 161.25
+offset_bottom = 24.7143
+texture = ExtResource("5_j8rqd")
+
+[node name="Goal" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+position = Vector2(125.5, 132)
+shape = SubResource("RectangleShape2D_iyjnd")
+
+[editable path="Window"]

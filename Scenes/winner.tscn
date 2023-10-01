@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx3vrxge3k05k"]
+
+[ext_resource type="Script" path="res://Scenes/bsod.gd" id="1_puyca"]
+[ext_resource type="Theme" uid="uid://dufae2rxs8r7f" path="res://Resources/desktoptheme.tres" id="2_03qra"]
+
+[node name="Winner" type="Node2D"]
+script = ExtResource("1_puyca")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 22.0
+offset_top = 59.0
+offset_right = 1139.0
+offset_bottom = 600.0
+theme = ExtResource("2_03qra")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "Disk 100% Defragmented! Good Job!
+
+This PC will now reboot out of safe mode so you can resume
+your normal operations.
+
+Thank you for playing DEFRAG-MENTOR!"

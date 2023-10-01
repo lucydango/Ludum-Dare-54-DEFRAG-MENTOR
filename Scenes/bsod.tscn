@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdw6br278lry6"]
+
+[ext_resource type="Theme" uid="uid://dufae2rxs8r7f" path="res://Resources/desktoptheme.tres" id="1_iy8qb"]
+[ext_resource type="Script" path="res://Scenes/bsod.gd" id="1_ok1oj"]
+
+[node name="BSOD" type="Node2D"]
+script = ExtResource("1_ok1oj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 16.0
+offset_top = 17.0
+offset_right = 1121.0
+offset_bottom = 634.0
+theme = ExtResource("1_iy8qb")
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "ERROR 0x80070070
+
+HARD DISK REACHED 100% FRAGMENTATION
+
+UNABLE TO RECOVER DISK
+
+SHUTTING DOWN..."

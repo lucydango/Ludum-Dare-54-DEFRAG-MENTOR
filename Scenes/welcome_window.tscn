@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://c28kvkn8i1t5k"]
+
+[ext_resource type="PackedScene" uid="uid://dkgryufx8iim6" path="res://Scenes/window.tscn" id="1_tarqo"]
+[ext_resource type="Theme" uid="uid://dufae2rxs8r7f" path="res://Resources/desktoptheme.tres" id="2_5yide"]
+[ext_resource type="Texture2D" uid="uid://g56bhk3fs4bb" path="res://Resources/questionmark.png" id="2_eme0d"]
+
+[node name="WelcomeWindow" type="Node2D"]
+z_index = 3
+position = Vector2(0, -22)
+
+[node name="Window" parent="." instance=ExtResource("1_tarqo")]
+position = Vector2(267, 24)
+scale = Vector2(38, 30)
+icon = ExtResource("2_eme0d")
+
+[node name="Control" type="Control" parent="Window/WindowBackground/Body" index="1"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -6.81577
+offset_top = -7.23999
+offset_right = 7.18423
+offset_bottom = 6.76001
+scale = Vector2(0.026, 0.033)
+theme = ExtResource("2_5yide")
+
+[node name="Label" type="Label" parent="Window/WindowBackground/Body/Control"]
+layout_mode = 2
+offset_left = 102.0
+offset_top = 32.56
+offset_right = 424.0
+offset_bottom = 59.56
+theme_override_font_sizes/font_size = 24
+text = "Welcome to Defrag-Mentor!"
+
+[node name="Label2" type="RichTextLabel" parent="Window/WindowBackground/Body/Control"]
+layout_mode = 2
+offset_left = 3.0
+offset_top = 70.0
+offset_right = 529.0
+offset_bottom = 108.0
+text = "Your hard drive seems to be extremely fragmented.
+Please run the standard defragmentation procedure."
+
+[node name="Label3" type="RichTextLabel" parent="Window/WindowBackground/Body/Control"]
+layout_mode = 2
+offset_left = 3.0
+offset_top = 119.0
+offset_right = 531.0
+offset_bottom = 152.0
+text = "To the left you can see how much of your hard-drive is fragmented. If this reaches 100%, this PC will be unrecoverable."
+
+[node name="Label4" type="RichTextLabel" parent="Window/WindowBackground/Body/Control"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 160.0
+offset_right = 533.0
+offset_bottom = 433.0
+bbcode_enabled = true
+text = "To the right you can see the Defragger Downloader, please use what *limited space* you have left to download helpful programs for the process ahead.
+
+Antivirus programs will defrag your drive with \"bullets\" from range, whilst minesweepers will explode in a radius if a fragmented block touches them.
+
+Ensure you position them well on your desktop for the best chance at saving your drive! Don't be afraid to click and drag them on the fly for the best effect!
+
+In the bottom right is the DEFRAGMENT button. Press this when you are ready to start the defragging process."
+
+[node name="Label5" type="RichTextLabel" parent="Window/WindowBackground/Body/Control"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 393.0
+offset_right = 534.0
+offset_bottom = 426.0
+bbcode_enabled = true
+text = "Ready? Press the question mark icon on your bottom desktop hotbar to hide this window and jump into action. Good luck!"
+
+[node name="Label" parent="Window/WindowBackground/Header" index="1"]
+text = "Welcome!"
+
+[editable path="Window"]

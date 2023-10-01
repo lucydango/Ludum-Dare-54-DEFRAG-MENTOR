@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://x27ps6vbflxa"]
+
+[ext_resource type="Script" path="res://MineTower.gd" id="1_yryxy"]
+[ext_resource type="PackedScene" uid="uid://dkgryufx8iim6" path="res://Scenes/window.tscn" id="2_6ws1p"]
+[ext_resource type="Texture2D" uid="uid://baxpomxiauinh" path="res://Resources/mine.png" id="3_cp6m8"]
+[ext_resource type="Texture2D" uid="uid://dsvyeeetaar3j" path="res://Resources/explosion.png" id="4_3faxb"]
+[ext_resource type="AudioStream" uid="uid://uow5f2e20xu3" path="res://Sounds/Explode.wav" id="4_bo5vx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drs1d"]
+size = Vector2(32, 37.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aw0bb"]
+radius = 63.002
+
+[node name="MineTower" type="Node2D"]
+script = ExtResource("1_yryxy")
+
+[node name="Window" parent="." instance=ExtResource("2_6ws1p")]
+scale = Vector2(4, 4)
+icon = ExtResource("3_cp6m8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Window/WindowBackground/Body" index="1"]
+position = Vector2(0, 0.0600004)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_cp6m8")
+
+[node name="Vision" type="Area2D" parent="Window/WindowBackground/Body/Sprite2D"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Window/WindowBackground/Body/Sprite2D/Vision"]
+position = Vector2(0, -2.75)
+shape = SubResource("RectangleShape2D_drs1d")
+
+[node name="Explosion" type="Area2D" parent="Window/WindowBackground/Body/Sprite2D"]
+collision_layer = 16
+collision_mask = 16
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Window/WindowBackground/Body/Sprite2D/Explosion"]
+shape = SubResource("CircleShape2D_aw0bb")
+
+[node name="Sprite2D" type="Sprite2D" parent="Window/WindowBackground/Body/Sprite2D/Explosion"]
+visible = false
+z_index = 2
+texture = ExtResource("4_3faxb")
+
+[node name="Label" parent="Window/WindowBackground/Header" index="1"]
+text = "Minesweeper"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_bo5vx")
+volume_db = 2.667
+
+[connection signal="area_entered" from="Window/WindowBackground/Body/Sprite2D/Vision" to="." method="_on_vision_area_entered"]
+[connection signal="area_entered" from="Window/WindowBackground/Body/Sprite2D/Explosion" to="." method="_on_explosion_area_entered"]
+
+[editable path="Window"]
